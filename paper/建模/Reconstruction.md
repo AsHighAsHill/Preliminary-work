@@ -14,18 +14,18 @@ SFM(Structure-from-motion pipelines)方法：
 动态加载平衡：根据CPU温度、带宽和电量，在客户端对3D显示运算做了动态平衡；
 协作地形建模：用户可以看到之前的模型，引导用户拍照；
 
-#### 使用方法
+##### 使用方法
 - offline SfM
 - SLAM(Simultainous Localization and Mapping) 同步定位功能
 
-#### 具体流程
+##### 具体流程
 
 可见3/8的图片；
 - 动态平衡加载：图像获得得到视频流，通过图像追踪获得关键帧；
 - 任务委托：进行重建、定位、辨别，得到服务器端会话模型；
 - 先验知识：通过SLAM得到曾经建立的模型，进行模型融合、循环闭包，协作建模，返回用户；
 
-#### 框架特色
+##### 框架特色
 
 分为global model和session model，通过SLAM技术将session model增强到global model中获得更好的3D重建效果，并且能看到用户看不到的部分（其他用户拍下来的）；
 
@@ -39,11 +39,11 @@ SFM(Structure-from-motion pipelines)方法：
 > 这篇蛮好的，两种方法都有具体解释和实现；
 >
 
-#### 自底向上的重建方法
+##### 自底向上的重建方法
 
-#### 自顶向下的重建方法
+##### 自顶向下的重建方法
 
-#### 联合框架
+##### 联合框架
 
 
 ## Divide and Conquer: A hierarchical approach to large-scale structure-from-motion
@@ -53,16 +53,35 @@ SFM(Structure-from-motion pipelines)方法：
 
 ## Shape From Motion
 
-#### 提取Track Featrures（轨道特征）
+##### 提取Track Featrures（轨道特征）
 
 检测好的特征，通过SIFT（尺度不变特征变换）方法匹配 ；
 KLT Tracking；Kanade-Lucas-Tomasi方法进行轨道特征跟踪；
 
-#### 建立运动模型
+##### 建立运动模型
 简化投影
 
-#### 精炼模型
+##### 精炼模型
 
-#### 恢复表面信息 
+##### 恢复表面信息 
 
 
+## 3D Reconstruction of Indoor and Outdoor Building
+
+> 利用几何约束和图像知识，由一台无标定摄像机拍摄的单幅图像，抽取线段、透视信息，由此建模；
+
+##### 算法流程
+1. Line segment detection and vanishing point estimation
+2. Image orientation estimation（内外区分）
+3. Planes Detection（平面检测）
+4. Image Rectification（图像矫正，分离平面）
+5. 3D Reconstrction
+
+
+## Single Image-Based 3D Scene Estimation from Semantic Prior
+
+> 从一个信息相关联的图像序列中重建3D模型获得比人类视觉更多信息是CV的基础问题
+
+superpixel-based labeling
+
+通过对superpixel标记，semantic label（存于先验数据库中），区分场景（路、建筑、天空），由此完成建模；
